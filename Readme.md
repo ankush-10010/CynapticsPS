@@ -54,55 +54,6 @@ drive/MyDrive/organized_dataset/
         └── ...
 ```
 
-### 2. Installation
-The required Python packages can be installed using `pip`. The first cell in the provided Colab script handles this automatically:
-
-```bash
-!pip install torch torchaudio torchvision transformers
-```
-
----
-
-## ▶️ How to Run
-
-1.  **Upload Dataset**: Upload your organized audio dataset to your Google Drive following the structure described above.
-2.  **Configure Path**: Open the `gan_audio.py` script and modify the `BASE_PATH` variable in the main execution block (`if __name__ == '__main__':`) to point to your dataset's root directory on Google Drive.
-
-    ```python
-    # --- Paths and Data Setup ---
-    BASE_PATH = 'drive/MyDrive/your_dataset_folder/' # <-- CHANGE THIS
-    ```
-
-3.  **Run in Google Colab**:
-    * Upload the `gan_audio.py` file to your Colab environment or simply copy and paste its contents into a new Colab notebook.
-    * Ensure your Colab runtime is set to use a **GPU accelerator** for faster training (`Runtime -> Change runtime type -> Hardware accelerator -> GPU`).
-    * Run the cells sequentially. You will be prompted to authorize Colab to access your Google Drive.
-
-4.  **Training**: The script will begin the training process. The progress for each epoch, including the Generator and Discriminator losses, will be displayed using `tqdm`.
-
----
-
-## 📊 Expected Outputs
-
-During and after training, the script will create two new folders in your Colab environment's root directory:
-
-1.  `gan_spectrogram_plots/`: Contains PNG images of generated spectrograms for each category, saved at the end of each epoch (e.g., `epoch_001.png`, `epoch_002.png`, etc.). This helps visualize the generator's learning progress.
-2.  `gan_generated_audio/`: Contains the generated `.wav` audio files for each category at the end of each epoch (e.g., `category_1_ep1.wav`, `category_2_ep1.wav`, etc.). You can listen to these files directly in the Colab output or download them.
-
----
-
-## 📂 Code Structure
-
-The `gan_audio.py` script is organized into five main sections for clarity:
-
-1.  **`0. IMPORTS & INITIAL SETUP`**: Imports all necessary libraries and handles Google Drive mounting.
-2.  **`1. DATASET CLASS`**: Defines the `TrainAudioSpectrogramDataset` class for loading, preprocessing, and labeling the audio data.
-3.  **`2. GAN MODEL DEFINITIONS`**: Defines the `CGAN_Generator` and `CGAN_Discriminator` neural network architectures.
-4.  **`3. UTILITY FUNCTIONS`**: Contains helper functions for generating audio from spectrograms and for saving/displaying the output.
-5.  **`4. GAN TRAINING FUNCTION`**: The core `train_gan` function that orchestrates the training loop for the generator and discriminator.
-6.  **`5. MAIN EXECUTION BLOCK`**: Sets configuration parameters (learning rate, batch size, etc.), initializes the dataset, models, and starts the training process.
-
----
 
 ## 📜 License
 
